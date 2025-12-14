@@ -38,18 +38,23 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
         }
         .lang-btn {
             background: rgba(255, 255, 255, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.5);
             color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
+            padding: 6px 12px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             transition: all 0.3s;
+            white-space: nowrap;
+            min-width: 60px;
+            text-align: center;
         }
         .lang-btn:hover { background: rgba(255, 255, 255, 0.5); transform: translateY(-2px); }
         .lang-btn.active {
@@ -97,10 +102,35 @@
         }
         .contact-box a { color: #fff; text-decoration: underline; }
         a { color: #667eea; word-break: break-all; }
+        /* RTL 支援 */
+        .rtl {
+            direction: rtl;
+            text-align: right;
+        }
+        .rtl .lang-btn {
+            direction: ltr;
+        }
+        
         @media (max-width: 768px) {
             .header h1 { font-size: 1.8em; }
             .content { padding: 20px; }
-            .lang-btn { font-size: 12px; padding: 6px 12px; }
+            .lang-btn { 
+                font-size: 10px; 
+                padding: 4px 8px; 
+                min-width: 50px;
+            }
+            .language-selector {
+                gap: 4px;
+                padding: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .lang-btn {
+                font-size: 9px;
+                padding: 3px 6px;
+                min-width: 45px;
+            }
         }
     </style>
 </head>
@@ -110,15 +140,30 @@
             <h1>📱 TempoFlow</h1>
             <p>Privacy Policy / 隱私政策</p>
             <div class="language-selector">
-                <button class="lang-btn active" onclick="switchLang('zh-TW')">繁體中文</button>
-                <button class="lang-btn" onclick="switchLang('en')">English</button>
+                <button class="lang-btn" onclick="switchLang('zh-TW')">繁體中文</button>
+                <button class="lang-btn active" onclick="switchLang('en')">English</button>
+                <button class="lang-btn" onclick="switchLang('zh-CN')">简体中文</button>
+                <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+                <button class="lang-btn" onclick="switchLang('ko')">한국어</button>
+                <button class="lang-btn" onclick="switchLang('id')">Bahasa Indonesia</button>
+                <button class="lang-btn" onclick="switchLang('es')">Español</button>
+                <button class="lang-btn" onclick="switchLang('pt')">Português</button>
+                <button class="lang-btn" onclick="switchLang('de')">Deutsch</button>
+                <button class="lang-btn" onclick="switchLang('fr')">Français</button>
+                <button class="lang-btn" onclick="switchLang('it')">Italiano</button>
+                <button class="lang-btn" onclick="switchLang('ru')">Русский</button>
+                <button class="lang-btn" onclick="switchLang('tr')">Türkçe</button>
+                <button class="lang-btn" onclick="switchLang('th')">ภาษาไทย</button>
+                <button class="lang-btn" onclick="switchLang('hi')">हिन्दी</button>
+                <button class="lang-btn" onclick="switchLang('bn')">বাংলা</button>
+                <button class="lang-btn" onclick="switchLang('ar')">العربية</button>
             </div>
         </div>
         
         <div class="content">
             <!-- 繁體中文 -->
-            <div id="zh-TW" class="lang-content active">
-                <div class="last-updated">最後更新日期：2024-12-14</div>
+            <div id="zh-TW" class="lang-content">
+                <div class="last-updated">最後更新日期：2025-12-14</div>
                 
                 <p><strong>TempoFlow</strong>（以下稱「本應用程式」）由個人開發者提供。本隱私政策說明我們如何收集、使用及保護您的資訊。本應用程式非常重視您的隱私，並以最簡化的方式處理個人資料。</p>
                 
@@ -199,8 +244,8 @@
             </div>
             
             <!-- English -->
-            <div id="en" class="lang-content">
-                <div class="last-updated">Last Updated: 2024-12-14</div>
+            <div id="en" class="lang-content active">
+                <div class="last-updated">Last Updated: 2025-12-14</div>
                 
                 <p><strong>TempoFlow</strong> ("the App") is developed and provided by an individual developer. This Privacy Policy explains how we collect, use, and protect your information. The App respects your privacy and minimizes data collection.</p>
                 
@@ -279,55 +324,1284 @@
                     📩 Email: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
                 </div>
             </div>
+            
+            <!-- 简体中文 -->
+            <div id="zh-CN" class="lang-content">
+                <div class="last-updated">最后更新日期：2025-12-14</div>
+                <p><strong>TempoFlow</strong>（以下称"本应用程序"）由个人开发者提供。本隐私政策说明我们如何收集、使用及保护您的信息。本应用程序非常重视您的隐私，并以最简化的方式处理个人数据。</p>
+                
+                <h2>1. 我们收集的数据</h2>
+                
+                <h3>(1) 您主动输入的数据</h3>
+                <p>本应用程序可能会储存您输入的内容，例如：</p>
+                <ul>
+                    <li>计时器名称</li>
+                    <li>计时器组合设置</li>
+                    <li>个人偏好设置（如语言、主题、提醒方式）</li>
+                </ul>
+                <p><span class="highlight">这些数据仅储存在您的设备内部，不会传输至任何服务器。</span></p>
+                
+                <h3>(2) 第三方广告数据（Google AdMob）</h3>
+                <p>为支持应用程序运营，本应用程序使用 Google AdMob 显示广告。AdMob 可能收集以下信息：</p>
+                <ul>
+                    <li>设备信息（如型号、系统版本）</li>
+                    <li>广告标识符（IDFA / AAID）</li>
+                    <li>互动数据（例如观看广告次数）</li>
+                </ul>
+                <p>此数据由 Google 依其隐私政策处理：<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) 匿名使用分析（Firebase Analytics）</h3>
+                <p>为改善使用体验，本应用程序使用 Firebase Analytics 收集匿名信息，包括：</p>
+                <ul>
+                    <li>功能使用频率</li>
+                    <li>设备类型与系统版本</li>
+                    <li>App 错误记录（crash logs）</li>
+                </ul>
+                <p>Firebase 不会收集可识别个人身份的信息。</p>
+                
+                <h2>2. 我们不会收集的数据</h2>
+                <ul>
+                    <li class="no-collect">❌ 不会收集姓名、地址、电话、Email</li>
+                    <li class="no-collect">❌ 不会上传用户文件</li>
+                    <li class="no-collect">❌ 不会追踪 GPS 位置</li>
+                    <li class="no-collect">❌ 不会要求账号登录</li>
+                    <li class="no-collect">❌ 不会将数据贩卖给任何第三方</li>
+                </ul>
+                
+                <h2>3. 我们如何使用数据</h2>
+                <p>数据仅用于：</p>
+                <ul>
+                    <li>提供计时器与提醒功能</li>
+                    <li>优化使用体验</li>
+                    <li>修正错误与提升稳定性</li>
+                    <li>广告投放</li>
+                </ul>
+                
+                <h2>4. 数据储存与安全性</h2>
+                <ul>
+                    <li>用户数据储存在设备本地端。</li>
+                    <li>Firebase 通讯均采用加密传输（HTTPS）。</li>
+                    <li>不构建任何外部服务器储存个人数据。</li>
+                </ul>
+                
+                <h2>5. 第三方服务</h2>
+                <p>本应用程序使用以下服务：</p>
+                <ul>
+                    <li>Google AdMob - 广告服务</li>
+                    <li>Google Firebase Analytics - 匿名使用分析</li>
+                    <li>Google Firebase Crashlytics - 错误报告</li>
+                </ul>
+                
+                <h2>6. 儿童隐私</h2>
+                <p>本应用程序非针对 13 岁以下儿童设计，不会刻意收集儿童数据。</p>
+                
+                <h2>7. 隐私政策的更新</h2>
+                <p>我们可能不定期更新此页内容，并立即生效。</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. 联系方式</h2>
+                    <p>若有任何问题：<br>
+                    📩 Email: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- 日本語 -->
+            <div id="ja" class="lang-content">
+                <div class="last-updated">最終更新日：2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong>（以下「本アプリ」）は、個人開発者によって提供されています。本プライバシーポリシーは、お客様の情報をどのように収集、使用、保護するかを説明します。本アプリは、お客様のプライバシーを非常に重視しており、個人データの取り扱いを最小限に抑えています。</p>
+                
+                <h2>1. 収集する情報</h2>
+                
+                <h3>(1) お客様が手動で入力したデータ</h3>
+                <p>本アプリは、お客様が手動で入力したコンテンツを保存することがあります。例：</p>
+                <ul>
+                    <li>タイマー名</li>
+                    <li>タイマーのグループ設定</li>
+                    <li>個人の設定（言語、テーマ、通知方法など）</li>
+                </ul>
+                <p><span class="highlight">これらのデータは、お客様のデバイス内にのみ保存され、いかなるサーバーにも送信されません。</span></p>
+                
+                <h3>(2) 第三者広告データ（Google AdMob）</h3>
+                <p>アプリの運営を維持するため、本アプリは Google AdMob を使用して広告を表示します。AdMob は以下の情報を収集する場合があります：</p>
+                <ul>
+                    <li>デバイス情報（モデル、OSバージョンなど）</li>
+                    <li>広告識別子（IDFA / AAID）</li>
+                    <li>インタラクションデータ（広告の視聴回数など）</li>
+                </ul>
+                <p>このデータは、Google のプライバシーポリシーに従って処理されます：<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) 匿名利用分析（Firebase Analytics）</h3>
+                <p>利用体験向上のため、本アプリは Firebase Analytics を使用して匿名の情報を収集します。これには以下が含まれます：</p>
+                <ul>
+                    <li>機能の利用頻度</li>
+                    <li>デバイスの種類と OS バージョン</li>
+                    <li>アプリのエラーログ（クラッシュログ）</li>
+                </ul>
+                <p>Firebase は、個人を特定できる情報を収集しません。</p>
+                
+                <h2>2. 収集しない情報</h2>
+                <ul>
+                    <li class="no-collect">❌ 氏名、住所、電話番号、Eメール</li>
+                    <li class="no-collect">❌ ユーザーファイルのアップロード</li>
+                    <li class="no-collect">❌ GPS 位置情報の追跡</li>
+                    <li class="no-collect">❌ アカウントログインの要求</li>
+                    <li class="no-collect">❌ データを第三者に販売すること</li>
+                </ul>
+                
+                <h2>3. 情報の使用方法</h2>
+                <p>情報は以下の目的にのみ使用されます：</p>
+                <ul>
+                    <li>タイマーおよび通知機能の提供</li>
+                    <li>利用体験の最適化</li>
+                    <li>エラーの修正と安定性の向上</li>
+                    <li>広告配信</li>
+                </ul>
+                
+                <h2>4. データの保存とセキュリティ</h2>
+                <ul>
+                    <li>ユーザーデータはデバイスのローカルに保存されます。</li>
+                    <li>Firebase との通信はすべて暗号化された HTTPS を使用します。</li>
+                    <li>個人データを保存するための外部サーバーは構築していません。</li>
+                </ul>
+                
+                <h2>5. 第三者サービス</h2>
+                <p>本アプリは以下のサービスを使用しています：</p>
+                <ul>
+                    <li>Google AdMob - 広告サービス</li>
+                    <li>Google Firebase Analytics - 匿名利用分析</li>
+                    <li>Google Firebase Crashlytics - エラー報告</li>
+                </ul>
+                
+                <h2>6. 子どものプライバシー</h2>
+                <p>本アプリは13歳未満の子どもを対象として設計されておらず、意図的に子どものデータを収集することはありません。</p>
+                
+                <h2>7. プライバシーポリシーの更新</h2>
+                <p>本プライバシーポリシーは、予告なく更新されることがあり、変更は直ちに有効となります。</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. お問い合わせ</h2>
+                    <p>ご質問がある場合：<br>
+                    📩 Eメール: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- 한국어 -->
+            <div id="ko" class="lang-content">
+                <div class="last-updated">최종 업데이트: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> ("본 애플리케이션")는 개인 개발자에 의해 제공됩니다. 본 개인정보 처리방침은 당사가 귀하의 정보를 수집, 사용 및 보호하는 방법을 설명합니다. 본 애플리케이션은 귀하의 개인정보를 매우 중요하게 생각하며, 개인 데이터 처리를 최소화합니다.</p>
+                
+                <h2>1. 당사가 수집하는 정보</h2>
+                
+                <h3>(1) 사용자가 직접 입력한 데이터</h3>
+                <p>본 애플리케이션은 사용자가 직접 입력한 다음 콘텐츠를 저장할 수 있습니다:</p>
+                <ul>
+                    <li>타이머 이름</li>
+                    <li>타이머 그룹 설정</li>
+                    <li>개인 환경 설정 (언어, 테마, 알림 방식 등)</li>
+                </ul>
+                <p><span class="highlight">이 데이터는 귀하의 장치 내부에만 저장되며, 어떠한 서버로도 전송되지 않습니다.</span></p>
+                
+                <h3>(2) 제3자 광고 데이터 (Google AdMob)</h3>
+                <p>애플리케이션 운영을 지원하기 위해 Google AdMob을 사용하여 광고를 표시합니다. AdMob은 다음 정보를 수집할 수 있습니다:</p>
+                <ul>
+                    <li>장치 정보 (모델, OS 버전 등)</li>
+                    <li>광고 식별자 (IDFA / AAID)</li>
+                    <li>상호작용 데이터 (예: 광고 시청 횟수)</li>
+                </ul>
+                <p>이 데이터는 Google의 개인정보 처리방침에 따라 처리됩니다:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) 익명 사용 분석 (Firebase Analytics)</h3>
+                <p>사용 경험 개선을 돕기 위해 Firebase Analytics를 사용하여 익명 정보를 수집합니다. 여기에는 다음이 포함됩니다:</p>
+                <ul>
+                    <li>기능 사용 빈도</li>
+                    <li>장치 유형 및 시스템 버전</li>
+                    <li>앱 오류 기록 (crash logs)</li>
+                </ul>
+                <p>Firebase는 개인을 식별할 수 있는 정보를 수집하지 않습니다.</p>
+                
+                <h2>2. 당사가 수집하지 않는 정보</h2>
+                <ul>
+                    <li class="no-collect">❌ 이름, 주소, 전화번호, 이메일 주소</li>
+                    <li class="no-collect">❌ 사용자 파일 업로드</li>
+                    <li class="no-collect">❌ GPS 위치 추적</li>
+                    <li class="no-collect">❌ 계정 로그인 요구</li>
+                    <li class="no-collect">❌ 데이터를 제3자에게 판매하거나 공유</li>
+                </ul>
+                
+                <h2>3. 정보 사용 방법</h2>
+                <p>정보는 다음 목적으로만 사용됩니다:</p>
+                <ul>
+                    <li>타이머 및 알림 기능 제공</li>
+                    <li>사용 경험 최적화</li>
+                    <li>오류 수정 및 안정성 향상</li>
+                    <li>광고 지원</li>
+                </ul>
+                
+                <h2>4. 데이터 저장 및 보안</h2>
+                <ul>
+                    <li>사용자 데이터는 귀하의 장치 로컬에 저장됩니다.</li>
+                    <li>Firebase 통신은 암호화된 HTTPS를 사용합니다.</li>
+                    <li>개인 데이터를 저장하기 위한 외부 서버는 구축하지 않습니다.</li>
+                </ul>
+                
+                <h2>5. 제3자 서비스</h2>
+                <p>본 애플리케이션은 다음 서비스를 사용합니다:</p>
+                <ul>
+                    <li>Google AdMob - 광고 서비스</li>
+                    <li>Google Firebase Analytics - 익명 사용 분석</li>
+                    <li>Google Firebase Crashlytics - 오류 보고</li>
+                </ul>
+                
+                <h2>6. 아동의 개인정보 보호</h2>
+                <p>본 애플리케이션은 13세 미만 아동을 대상으로 설계되지 않았으며, 아동의 데이터를 의도적으로 수집하지 않습니다.</p>
+                
+                <h2>7. 개인정보 처리방침 업데이트</h2>
+                <p>당사는 본 개인정보 처리방침을 수시로 업데이트할 수 있으며, 변경 사항은 즉시 효력을 발생합니다.</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. 연락처 정보</h2>
+                    <p>질문이 있으시면:<br>
+                    📩 이메일: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- Bahasa Indonesia -->
+            <div id="id" class="lang-content">
+                <div class="last-updated">Terakhir Diperbarui: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> ("Aplikasi") dikembangkan dan disediakan oleh pengembang individu. Kebijakan Privasi ini menjelaskan cara kami mengumpulkan, menggunakan, dan melindungi informasi Anda. Aplikasi sangat menghargai privasi Anda dan meminimalkan pemrosesan data pribadi.</p>
+                
+                <h2>1. Informasi yang Kami Kumpulkan</h2>
+                
+                <h3>(1) Data Masukan Pengguna</h3>
+                <p>Aplikasi dapat menyimpan informasi yang Anda masukkan secara manual, seperti:</p>
+                <ul>
+                    <li>Nama pengatur waktu (timer)</li>
+                    <li>Konfigurasi kelompok pengatur waktu</li>
+                    <li>Preferensi pribadi (bahasa, tema, pengaturan pengingat)</li>
+                </ul>
+                <p><span class="highlight">Semua data disimpan secara lokal di perangkat Anda dan tidak pernah diunggah ke server mana pun.</span></p>
+                
+                <h3>(2) Data Iklan Pihak Ketiga (Google AdMob)</h3>
+                <p>Untuk mendukung pemeliharaan aplikasi, kami menggunakan Google AdMob untuk menampilkan iklan. AdMob dapat mengumpulkan informasi berikut:</p>
+                <ul>
+                    <li>Informasi perangkat (model, versi OS)</li>
+                    <li>Pengenal iklan (IDFA / AAID)</li>
+                    <li>Data interaksi iklan</li>
+                </ul>
+                <p>Data ini diproses oleh Google sesuai dengan Kebijakan Privasinya:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) Analisis Penggunaan Anonim (Firebase Analytics)</h3>
+                <p>Untuk membantu meningkatkan Aplikasi, data anonim dapat dikumpulkan melalui Firebase Analytics, termasuk:</p>
+                <ul>
+                    <li>Frekuensi penggunaan fitur</li>
+                    <li>Jenis perangkat dan versi OS</li>
+                    <li>Laporan kerusakan (crash logs)</li>
+                </ul>
+                <p>Firebase tidak mengumpulkan informasi identitas pribadi.</p>
+                
+                <h2>2. Informasi yang TIDAK Kami Kumpulkan</h2>
+                <ul>
+                    <li class="no-collect">❌ Nama, alamat, nomor telepon, email</li>
+                    <li class="no-collect">❌ File pengguna</li>
+                    <li class="no-collect">❌ Data GPS atau lokasi</li>
+                    <li class="no-collect">❌ Kredensial login apa pun</li>
+                    <li class="no-collect">❌ Data yang dijual atau dibagikan kepada pihak ketiga</li>
+                </ul>
+                
+                <h2>3. Cara Kami Menggunakan Informasi</h2>
+                <p>Informasi hanya digunakan untuk:</p>
+                <ul>
+                    <li>Fitur pengatur waktu dan pengingat</li>
+                    <li>Meningkatkan pengalaman pengguna</li>
+                    <li>Perbaikan bug dan peningkatan stabilitas</li>
+                    <li>Dukungan iklan</li>
+                </ul>
+                
+                <h2>4. Penyimpanan dan Keamanan Data</h2>
+                <ul>
+                    <li>Data disimpan secara lokal di perangkat Anda.</li>
+                    <li>Komunikasi Firebase menggunakan HTTPS terenkripsi.</li>
+                    <li>Kami tidak mengoperasikan server untuk menyimpan data pribadi.</li>
+                </ul>
+                
+                <h2>5. Layanan Pihak Ketiga</h2>
+                <p>Aplikasi menggunakan layanan berikut:</p>
+                <ul>
+                    <li>Google AdMob - Layanan iklan</li>
+                    <li>Google Firebase Analytics - Analisis penggunaan anonim</li>
+                    <li>Google Firebase Crashlytics - Pelaporan kesalahan</li>
+                </ul>
+                
+                <h2>6. Privasi Anak-Anak</h2>
+                <p>Aplikasi tidak dirancang untuk anak di bawah usia 13 tahun dan tidak dengan sengaja mengumpulkan data dari anak-anak.</p>
+                
+                <h2>7. Pembaruan Kebijakan Privasi</h2>
+                <p>Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu, dan perubahan akan segera berlaku.</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. Informasi Kontak</h2>
+                    <p>Untuk pertanyaan apa pun:<br>
+                    📩 Email: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- Español -->
+            <div id="es" class="lang-content">
+                <div class="last-updated">Última actualización: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> ("la Aplicación") es desarrollada y proporcionada por un desarrollador individual. Esta Política de Privacidad explica cómo recopilamos, utilizamos y protegemos su información. La Aplicación respeta profundamente su privacidad y minimiza la gestión de datos personales.</p>
+                
+                <h2>1. Información que Recopilamos</h2>
+                
+                <h3>(1) Datos Ingresados por el Usuario</h3>
+                <p>La Aplicación puede almacenar la información que usted introduce manualmente, como:</p>
+                <ul>
+                    <li>Nombres de temporizadores</li>
+                    <li>Configuraciones de grupos de temporizadores</li>
+                    <li>Preferencias personales (idioma, tema, configuración de recordatorios)</li>
+                </ul>
+                <p><span class="highlight">Todos los datos se almacenan localmente en su dispositivo y nunca se cargan en ningún servidor.</span></p>
+                
+                <h3>(2) Datos de Publicidad de Terceros (Google AdMob)</h3>
+                <p>Para apoyar el mantenimiento de la aplicación, utilizamos Google AdMob para mostrar anuncios. AdMob puede recopilar la siguiente información:</p>
+                <ul>
+                    <li>Información del dispositivo (modelo, versión del sistema operativo)</li>
+                    <li>Identificadores de publicidad (IDFA / AAID)</li>
+                    <li>Datos de interacción con anuncios</li>
+                </ul>
+                <p>Estos datos son procesados por Google de acuerdo con su Política de Privacidad:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) Análisis de Uso Anónimo (Firebase Analytics)</h3>
+                <p>Para ayudar a mejorar la Aplicación, se puede recopilar información anónima a través de Firebase Analytics, incluyendo:</p>
+                <ul>
+                    <li>Frecuencia de uso de funciones</li>
+                    <li>Tipo de dispositivo y versión del sistema operativo</li>
+                    <li>Informes de errores (crash logs)</li>
+                </ul>
+                <p>Firebase no recopila información de identificación personal.</p>
+                
+                <h2>2. Información que NO Recopilamos</h2>
+                <ul>
+                    <li class="no-collect">❌ Nombre, dirección, número de teléfono, correo electrónico</li>
+                    <li class="no-collect">❌ Archivos de usuario</li>
+                    <li class="no-collect">❌ Datos de GPS o ubicación</li>
+                    <li class="no-collect">❌ Credenciales de inicio de sesión</li>
+                    <li class="no-collect">❌ Datos vendidos o compartidos con terceros</li>
+                </ul>
+                
+                <h2>3. Cómo Usamos la Información</h2>
+                <p>La información se utiliza únicamente para:</p>
+                <ul>
+                    <li>Funciones de temporizador y recordatorio</li>
+                    <li>Mejorar la experiencia del usuario</li>
+                    <li>Corrección de errores y mejora de la estabilidad</li>
+                    <li>Soporte publicitario</li>
+                </ul>
+                
+                <h2>4. Almacenamiento y Seguridad de Datos</h2>
+                <ul>
+                    <li>Los datos se almacenan localmente en su dispositivo.</li>
+                    <li>La comunicación de Firebase utiliza HTTPS cifrado.</li>
+                    <li>No operamos servidores para almacenar datos personales.</li>
+                </ul>
+                
+                <h2>5. Servicios de Terceros</h2>
+                <p>La Aplicación utiliza los siguientes servicios:</p>
+                <ul>
+                    <li>Google AdMob - Servicio de publicidad</li>
+                    <li>Google Firebase Analytics - Análisis de uso anónimo</li>
+                    <li>Google Firebase Crashlytics - Informe de errores</li>
+                </ul>
+                
+                <h2>6. Privacidad de los Niños</h2>
+                <p>La Aplicación no está diseñada para niños menores de 13 años y no recopila a sabiendas datos de niños.</p>
+                
+                <h2>7. Actualizaciones de la Política de Privacidad</h2>
+                <p>Podemos actualizar esta Política de Privacidad de vez en cuando, y los cambios serán efectivos inmediatamente.</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. Información de Contacto</h2>
+                    <p>Para cualquier pregunta:<br>
+                    📩 Correo electrónico: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- Português -->
+            <div id="pt" class="lang-content">
+                <div class="last-updated">Última Atualização: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> ("a Aplicação") é desenvolvida e fornecida por um desenvolvedor individual. Esta Política de Privacidade explica como recolhemos, usamos e protegemos as suas informações. A Aplicação respeita profundamente a sua privacidade e minimiza o processamento de dados pessoais.</p>
+                
+                <h2>1. Informações que Recolhemos</h2>
+                
+                <h3>(1) Dados Inseridos pelo Utilizador</h3>
+                <p>A Aplicação pode armazenar as informações que insere manualmente, tais como:</p>
+                <ul>
+                    <li>Nomes dos temporizadores</li>
+                    <li>Configurações de grupos de temporizadores</li>
+                    <li>Preferências pessoais (idioma, tema, configurações de lembretes)</li>
+                </ul>
+                <p><span class="highlight">Todos os dados são armazenados localmente no seu dispositivo e nunca são carregados para qualquer servidor.</span></p>
+                
+                <h3>(2) Dados de Publicidade de Terceiros (Google AdMob)</h3>
+                <p>Para suportar a manutenção da aplicação, usamos o Google AdMob para exibir anúncios. O AdMob pode recolher as seguintes informações:</p>
+                <ul>
+                    <li>Informações do dispositivo (modelo, versão do SO)</li>
+                    <li>Identificadores de publicidade (IDFA / AAID)</li>
+                    <li>Dados de interação com anúncios</li>
+                </ul>
+                <p>Estes dados são processados pela Google de acordo com a sua Política de Privacidade:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) Análise de Utilização Anónima (Firebase Analytics)</h3>
+                <p>Para ajudar a melhorar a Aplicação, dados anónimos podem ser recolhidos através do Firebase Analytics, incluindo:</p>
+                <ul>
+                    <li>Frequência de utilização de funcionalidades</li>
+                    <li>Tipo de dispositivo e versão do SO</li>
+                    <li>Relatórios de erros (crash logs)</li>
+                </ul>
+                <p>O Firebase não recolhe informações de identificação pessoal.</p>
+                
+                <h2>2. Informações que NÃO Recolhemos</h2>
+                <ul>
+                    <li class="no-collect">❌ Nome, morada, número de telefone, e-mail</li>
+                    <li class="no-collect">❌ Ficheiros do utilizador</li>
+                    <li class="no-collect">❌ Dados de GPS ou localização</li>
+                    <li class="no-collect">❌ Quaisquer credenciais de login</li>
+                    <li class="no-collect">❌ Dados vendidos ou partilhados com terceiros</li>
+                </ul>
+                
+                <h2>3. Como Usamos a Informação</h2>
+                <p>A informação é usada apenas para:</p>
+                <ul>
+                    <li>Funcionalidades de temporizador e lembrete</li>
+                    <li>Melhorar a experiência do utilizador</li>
+                    <li>Correção de erros e melhoria da estabilidade</li>
+                    <li>Suporte de anúncios</li>
+                </ul>
+                
+                <h2>4. Armazenamento e Segurança de Dados</h2>
+                <ul>
+                    <li>Os dados são armazenados localmente no seu dispositivo.</li>
+                    <li>A comunicação do Firebase utiliza HTTPS encriptado.</li>
+                    <li>Não operamos servidores para armazenar dados pessoais.</li>
+                </ul>
+                
+                <h2>5. Serviços de Terceiros</h2>
+                <p>A Aplicação utiliza os seguintes serviços:</p>
+                <ul>
+                    <li>Google AdMob - Serviço de publicidade</li>
+                    <li>Google Firebase Analytics - Análise de utilização anónima</li>
+                    <li>Google Firebase Crashlytics - Relatório de erros</li>
+                </ul>
+                
+                <h2>6. Privacidade das Crianças</h2>
+                <p>A Aplicação não se destina a crianças com menos de 13 anos e não recolhe intencionalmente dados de crianças.</p>
+                
+                <h2>7. Atualizações da Política de Privacidade</h2>
+                <p>Podemos atualizar esta Política de Privacidade periodicamente, e as alterações serão imediatas.</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. Informações de Contacto</h2>
+                    <p>Para quaisquer questões:<br>
+                    📩 Email: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- Deutsch -->
+            <div id="de" class="lang-content">
+                <div class="last-updated">Zuletzt aktualisiert: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> („die App") wird von einem einzelnen Entwickler bereitgestellt. Diese Datenschutzrichtlinie erklärt, wie wir Ihre Informationen sammeln, nutzen und schützen. Die App legt großen Wert auf Ihre Privatsphäre und minimiert die Verarbeitung personenbezogener Daten.</p>
+                
+                <h2>1. Informationen, die wir sammeln</h2>
+                
+                <h3>(1) Vom Benutzer eingegebene Daten</h3>
+                <p>Die App kann Informationen speichern, die Sie manuell eingeben, wie zum Beispiel:</p>
+                <ul>
+                    <li>Timer-Namen</li>
+                    <li>Timer-Gruppenkonfigurationen</li>
+                    <li>Persönliche Einstellungen (Sprache, Design, Erinnerungseinstellungen)</li>
+                </ul>
+                <p><span class="highlight">Alle Daten werden lokal auf Ihrem Gerät gespeichert und niemals auf einen Server hochgeladen.</span></p>
+                
+                <h3>(2) Daten von Drittanbieter-Werbung (Google AdMob)</h3>
+                <p>Zur Unterstützung des App-Betriebs verwenden wir Google AdMob zur Anzeige von Werbung. AdMob kann folgende Informationen sammeln:</p>
+                <ul>
+                    <li>Geräteinformationen (Modell, Betriebssystemversion)</li>
+                    <li>Werbekennungen (IDFA / AAID)</li>
+                    <li>Daten zur Anzeigeninteraktion</li>
+                </ul>
+                <p>Diese Daten werden von Google gemäß deren Datenschutzbestimmungen verarbeitet:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) Anonyme Nutzungsanalysen (Firebase Analytics)</h3>
+                <p>Zur Verbesserung der App können anonyme Daten über Firebase Analytics gesammelt werden, einschließlich:</p>
+                <ul>
+                    <li>Häufigkeit der Funktionsnutzung</li>
+                    <li>Gerätetyp und Betriebssystemversion</li>
+                    <li>Absturzberichte (Crash-Logs)</li>
+                </ul>
+                <p>Firebase sammelt keine persönlich identifizierbaren Informationen.</p>
+                
+                <h2>2. Informationen, die wir NICHT sammeln</h2>
+                <ul>
+                    <li class="no-collect">❌ Name, Adresse, Telefonnummer, E-Mail</li>
+                    <li class="no-collect">❌ Benutzerdateien</li>
+                    <li class="no-collect">❌ GPS- oder Standortdaten</li>
+                    <li class="no-collect">❌ Anmeldeinformationen</li>
+                    <li class="no-collect">❌ Daten, die an Dritte verkauft oder weitergegeben werden</li>
+                </ul>
+                
+                <h2>3. Wie wir die Informationen verwenden</h2>
+                <p>Informationen werden ausschließlich verwendet für:</p>
+                <ul>
+                    <li>Timer- und Erinnerungsfunktionen</li>
+                    <li>Verbesserung des Nutzererlebnisses</li>
+                    <li>Fehlerbehebungen und Stabilitätsverbesserungen</li>
+                    <li>Werbeunterstützung</li>
+                </ul>
+                
+                <h2>4. Datenspeicherung und Sicherheit</h2>
+                <ul>
+                    <li>Daten werden lokal auf Ihrem Gerät gespeichert.</li>
+                    <li>Die Firebase-Kommunikation verwendet verschlüsseltes HTTPS.</li>
+                    <li>Wir betreiben keine Server zur Speicherung persönlicher Daten.</li>
+                </ul>
+                
+                <h2>5. Drittanbieter-Dienste</h2>
+                <p>Die App verwendet die folgenden Dienste:</p>
+                <ul>
+                    <li>Google AdMob - Werbedienst</li>
+                    <li>Google Firebase Analytics - Anonyme Nutzungsanalyse</li>
+                    <li>Google Firebase Crashlytics - Fehlerberichterstattung</li>
+                </ul>
+                
+                <h2>6. Datenschutz für Kinder</h2>
+                <p>Die App ist nicht für Kinder unter 13 Jahren konzipiert und sammelt wissentlich keine Daten von Kindern.</p>
+                
+                <h2>7. Aktualisierungen der Datenschutzrichtlinie</h2>
+                <p>Wir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Änderungen werden sofort wirksam.</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. Kontaktinformationen</h2>
+                    <p>Bei Fragen wenden Sie sich bitte an:<br>
+                    📩 E-Mail: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- Français -->
+            <div id="fr" class="lang-content">
+                <div class="last-updated">Dernière mise à jour: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> (« l'Application ») est développée et fournie par un développeur individuel. Cette Politique de Confidentialité explique comment nous collectons, utilisons et protégeons vos informations. L'Application respecte profondément votre vie privée et minimise le traitement des données personnelles.</p>
+                
+                <h2>1. Informations que nous collectons</h2>
+                
+                <h3>(1) Données saisies par l'utilisateur</h3>
+                <p>L'Application peut stocker les informations que vous saisissez manuellement, telles que:</p>
+                <ul>
+                    <li>Noms des minuteurs (timers)</li>
+                    <li>Configurations des groupes de minuteurs</li>
+                    <li>Préférences personnelles (langue, thème, paramètres de rappel)</li>
+                </ul>
+                <p><span class="highlight">Toutes les données sont stockées localement sur votre appareil et ne sont jamais téléchargées sur un serveur.</span></p>
+                
+                <h3>(2) Données publicitaires de tiers (Google AdMob)</h3>
+                <p>Pour soutenir la maintenance de l'application, nous utilisons Google AdMob pour afficher des publicités. AdMob peut collecter les informations suivantes:</p>
+                <ul>
+                    <li>Informations sur l'appareil (modèle, version du système d'exploitation)</li>
+                    <li>Identifiants publicitaires (IDFA / AAID)</li>
+                    <li>Données d'interaction avec les publicités</li>
+                </ul>
+                <p>Ces données sont traitées par Google conformément à sa Politique de Confidentialité:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) Analyse d'utilisation anonyme (Firebase Analytics)</h3>
+                <p>Pour aider à améliorer l'Application, des données anonymes peuvent être collectées via Firebase Analytics, notamment:</p>
+                <ul>
+                    <li>Fréquence d'utilisation des fonctionnalités</li>
+                    <li>Type d'appareil et version du système d'exploitation</li>
+                    <li>Rapports d'erreurs (journaux de plantage)</li>
+                </ul>
+                <p>Firebase ne collecte pas d'informations personnellement identifiables.</p>
+                
+                <h2>2. Informations que nous NE collectons PAS</h2>
+                <ul>
+                    <li class="no-collect">❌ Nom, adresse, numéro de téléphone, e-mail</li>
+                    <li class="no-collect">❌ Fichiers utilisateur</li>
+                    <li class="no-collect">❌ Données GPS ou de localisation</li>
+                    <li class="no-collect">❌ Identifiants de connexion</li>
+                    <li class="no-collect">❌ Données vendues ou partagées avec des tiers</li>
+                </ul>
+                
+                <h2>3. Comment nous utilisons les informations</h2>
+                <p>Les informations sont utilisées uniquement pour:</p>
+                <ul>
+                    <li>Fonctionnalités de minuteur et de rappel</li>
+                    <li>Améliorer l'expérience utilisateur</li>
+                    <li>Correction de bugs et amélioration de la stabilité</li>
+                    <li>Support publicitaire</li>
+                </ul>
+                
+                <h2>4. Stockage des données et sécurité</h2>
+                <ul>
+                    <li>Les données sont stockées localement sur votre appareil.</li>
+                    <li>La communication Firebase utilise le protocole HTTPS chiffré.</li>
+                    <li>Nous n'exploitons pas de serveurs pour stocker des données personnelles.</li>
+                </ul>
+                
+                <h2>5. Services tiers</h2>
+                <p>L'Application utilise les services suivants:</p>
+                <ul>
+                    <li>Google AdMob - Service de publicité</li>
+                    <li>Google Firebase Analytics - Analyse d'utilisation anonyme</li>
+                    <li>Google Firebase Crashlytics - Rapport d'erreurs</li>
+                </ul>
+                
+                <h2>6. Confidentialité des enfants</h2>
+                <p>L'Application n'est pas conçue pour les enfants de moins de 13 ans et ne collecte pas sciemment de données auprès d'eux.</p>
+                
+                <h2>7. Mises à jour de la Politique de Confidentialité</h2>
+                <p>Nous pouvons mettre à jour cette Politique de Confidentialité de temps à autre, et les modifications prendront effet immédiatement.</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. Informations de contact</h2>
+                    <p>Pour toute question:<br>
+                    📩 E-mail: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- Italiano -->
+            <div id="it" class="lang-content">
+                <div class="last-updated">Ultimo Aggiornamento: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> ("l'Applicazione") è sviluppata e fornita da uno sviluppatore individuale. Questa Informativa sulla Privacy spiega come raccogliamo, usiamo e proteggiamo le vostre informazioni. L'Applicazione rispetta profondamente la vostra privacy e minimizza il trattamento dei dati personali.</p>
+                
+                <h2>1. Informazioni che Raccogliamo</h2>
+                
+                <h3>(1) Dati Inseriti dall'Utente</h3>
+                <p>L'Applicazione può memorizzare le informazioni che inserite manualmente, come:</p>
+                <ul>
+                    <li>Nomi dei timer</li>
+                    <li>Configurazioni dei gruppi di timer</li>
+                    <li>Preferenze personali (lingua, tema, impostazioni di promemoria)</li>
+                </ul>
+                <p><span class="highlight">Tutti i dati sono memorizzati localmente sul vostro dispositivo e non vengono mai caricati su alcun server.</span></p>
+                
+                <h3>(2) Dati Pubblicitari di Terze Parti (Google AdMob)</h3>
+                <p>Per supportare la manutenzione dell'app, utilizziamo Google AdMob per visualizzare annunci. AdMob può raccogliere le seguenti informazioni:</p>
+                <ul>
+                    <li>Informazioni sul dispositivo (modello, versione del sistema operativo)</li>
+                    <li>Identificatori pubblicitari (IDFA / AAID)</li>
+                    <li>Dati di interazione con gli annunci</li>
+                </ul>
+                <p>Questi dati sono trattati da Google in conformità con la sua Informativa sulla Privacy:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) Analisi d'Uso Anonime (Firebase Analytics)</h3>
+                <p>Per contribuire al miglioramento dell'Applicazione, possono essere raccolti dati anonimi tramite Firebase Analytics, tra cui:</p>
+                <ul>
+                    <li>Frequenza di utilizzo delle funzionalità</li>
+                    <li>Tipo di dispositivo e versione del sistema operativo</li>
+                    <li>Rapporti di crash (log degli errori)</li>
+                </ul>
+                <p>Firebase non raccoglie informazioni di identificazione personale.</p>
+                
+                <h2>2. Informazioni che NON Raccogliamo</h2>
+                <ul>
+                    <li class="no-collect">❌ Nome, indirizzo, numero di telefono, e-mail</li>
+                    <li class="no-collect">❌ File utente</li>
+                    <li class="no-collect">❌ Dati GPS o di localizzazione</li>
+                    <li class="no-collect">❌ Credenziali di accesso</li>
+                    <li class="no-collect">❌ Dati venduti o condivisi con terze parti</li>
+                </ul>
+                
+                <h2>3. Come Usiamo le Informazioni</h2>
+                <p>Le informazioni vengono utilizzate solo per:</p>
+                <ul>
+                    <li>Funzionalità di timer e promemoria</li>
+                    <li>Migliorare l'esperienza utente</li>
+                    <li>Correzione di bug e miglioramento della stabilità</li>
+                    <li>Supporto pubblicitario</li>
+                </ul>
+                
+                <h2>4. Archiviazione e Sicurezza dei Dati</h2>
+                <ul>
+                    <li>I dati sono memorizzati localmente sul vostro dispositivo.</li>
+                    <li>La comunicazione con Firebase utilizza HTTPS crittografato.</li>
+                    <li>Non gestiamo server per memorizzare dati personali.</li>
+                </ul>
+                
+                <h2>5. Servizi di Terze Parti</h2>
+                <p>L'Applicazione utilizza i seguenti servizi:</p>
+                <ul>
+                    <li>Google AdMob - Servizio pubblicitario</li>
+                    <li>Google Firebase Analytics - Analisi d'uso anonime</li>
+                    <li>Google Firebase Crashlytics - Rapporto di errori</li>
+                </ul>
+                
+                <h2>6. Privacy dei Minori</h2>
+                <p>L'Applicazione non è destinata a bambini di età inferiore a 13 anni e non raccoglie consapevolmente dati da minori.</p>
+                
+                <h2>7. Aggiornamenti dell'Informativa sulla Privacy</h2>
+                <p>Potremmo aggiornare questa Informativa sulla Privacy di volta in volta e le modifiche saranno immediatamente efficaci.</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. Informazioni di Contatto</h2>
+                    <p>Per qualsiasi domanda:<br>
+                    📩 Email: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- Русский -->
+            <div id="ru" class="lang-content">
+                <div class="last-updated">Последнее обновление: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> («Приложение») разработано и предоставляется индивидуальным разработчиком. Настоящая Политика конфиденциальности объясняет, как мы собираем, используем и защищаем вашу информацию. Приложение глубоко уважает вашу конфиденциальность и минимизирует обработку персональных данных.</p>
+                
+                <h2>1. Информация, которую мы собираем</h2>
+                
+                <h3>(1) Данные, вводимые пользователем</h3>
+                <p>Приложение может хранить информацию, которую вы вводите вручную, например:</p>
+                <ul>
+                    <li>Названия таймеров</li>
+                    <li>Конфигурации групп таймеров</li>
+                    <li>Личные настройки (язык, тема, настройки напоминаний)</li>
+                </ul>
+                <p><span class="highlight">Все данные хранятся локально на вашем устройстве и никогда не загружаются на какой-либо сервер.</span></p>
+                
+                <h3>(2) Данные сторонней рекламы (Google AdMob)</h3>
+                <p>Для поддержки работы Приложения мы используем Google AdMob для показа рекламы. AdMob может собирать следующую информацию:</p>
+                <ul>
+                    <li>Информация об устройстве (модель, версия ОС)</li>
+                    <li>Рекламные идентификаторы (IDFA / AAID)</li>
+                    <li>Данные о взаимодействии с рекламой</li>
+                </ul>
+                <p>Эти данные обрабатываются Google в соответствии с их Политикой конфиденциальности:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) Анонимный анализ использования (Firebase Analytics)</h3>
+                <p>Для улучшения Приложения через Firebase Analytics могут собираться анонимные данные, включая:</p>
+                <ul>
+                    <li>Частота использования функций</li>
+                    <li>Тип устройства и версия ОС</li>
+                    <li>Отчеты о сбоях (crash logs)</li>
+                </ul>
+                <p>Firebase не собирает информацию, позволяющую идентифицировать личность.</p>
+                
+                <h2>2. Информация, которую мы НЕ собираем</h2>
+                <ul>
+                    <li class="no-collect">❌ Имя, адрес, номер телефона, адрес электронной почты</li>
+                    <li class="no-collect">❌ Файлы пользователя</li>
+                    <li class="no-collect">❌ Данные GPS или местоположения</li>
+                    <li class="no-collect">❌ Учетные данные для входа в систему</li>
+                    <li class="no-collect">❌ Данные, продаваемые или передаваемые третьим лицам</li>
+                </ul>
+                
+                <h2>3. Как мы используем информацию</h2>
+                <p>Информация используется только для:</p>
+                <ul>
+                    <li>Функций таймера и напоминаний</li>
+                    <li>Улучшения пользовательского опыта</li>
+                    <li>Исправления ошибок и повышения стабильности</li>
+                    <li>Поддержки рекламы</li>
+                </ul>
+                
+                <h2>4. Хранение и безопасность данных</h2>
+                <ul>
+                    <li>Данные хранятся локально на вашем устройстве.</li>
+                    <li>Связь с Firebase использует зашифрованный HTTPS.</li>
+                    <li>Мы не используем серверы для хранения личных данных.</li>
+                </ul>
+                
+                <h2>5. Сторонние сервисы</h2>
+                <p>Приложение использует следующие сервисы:</p>
+                <ul>
+                    <li>Google AdMob - Рекламный сервис</li>
+                    <li>Google Firebase Analytics - Анонимный анализ использования</li>
+                    <li>Google Firebase Crashlytics - Отчетность об ошибках</li>
+                </ul>
+                
+                <h2>6. Конфиденциальность детей</h2>
+                <p>Приложение не предназначено для детей младше 13 лет и сознательно не собирает их данные.</p>
+                
+                <h2>7. Обновления Политики конфиденциальности</h2>
+                <p>Мы можем время от времени обновлять настоящую Политику конфиденциальности, и изменения вступают в силу немедленно.</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. Контактная информация</h2>
+                    <p>По любым вопросам:<br>
+                    📩 Электронная почта: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- Türkçe -->
+            <div id="tr" class="lang-content">
+                <div class="last-updated">Son Güncelleme: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> ("Uygulama"), bireysel bir geliştirici tarafından sağlanmaktadır. Bu Gizlilik Politikası, bilgilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu açıklamaktadır. Uygulama, gizliliğinize büyük önem vermektedir ve kişisel veri işlemeyi minimumda tutmaktadır.</p>
+                
+                <h2>1. Topladığımız Bilgiler</h2>
+                
+                <h3>(1) Kullanıcı Tarafından Girilen Veriler</h3>
+                <p>Uygulama, manuel olarak girdiğiniz aşağıdaki bilgileri saklayabilir:</p>
+                <ul>
+                    <li>Zamanlayıcı adları</li>
+                    <li>Zamanlayıcı grup konfigürasyonları</li>
+                    <li>Kişisel tercihler (dil, tema, hatırlatıcı ayarları)</li>
+                </ul>
+                <p><span class="highlight">Tüm veriler cihazınızda yerel olarak saklanır ve asla herhangi bir sunucuya yüklenmez.</span></p>
+                
+                <h3>(2) Üçüncü Taraf Reklam Verileri (Google AdMob)</h3>
+                <p>Uygulama bakımını desteklemek için Google AdMob'u kullanarak reklam gösteririz. AdMob aşağıdaki bilgileri toplayabilir:</p>
+                <ul>
+                    <li>Cihaz bilgileri (model, işletim sistemi sürümü)</li>
+                    <li>Reklam tanımlayıcıları (IDFA / AAID)</li>
+                    <li>Reklam etkileşim verileri</li>
+                </ul>
+                <p>Bu veriler, Google tarafından Gizlilik Politikasına uygun olarak işlenir:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) Anonim Kullanım Analizi (Firebase Analytics)</h3>
+                <p>Uygulamayı geliştirmeye yardımcı olmak amacıyla Firebase Analytics aracılığıyla anonim veriler toplanabilir. Buna şunlar dahildir:</p>
+                <ul>
+                    <li>Özellik kullanım sıklığı</li>
+                    <li>Cihaz türü ve işletim sistemi sürümü</li>
+                    <li>Çökme raporları (crash logs)</li>
+                </ul>
+                <p>Firebase, kişisel olarak tanımlanabilir bilgileri toplamaz.</p>
+                
+                <h2>2. Toplamadığımız Bilgiler</h2>
+                <ul>
+                    <li class="no-collect">❌ Ad, adres, telefon numarası, e-posta</li>
+                    <li class="no-collect">❌ Kullanıcı dosyaları</li>
+                    <li class="no-collect">❌ GPS veya konum verileri</li>
+                    <li class="no-collect">❌ Herhangi bir oturum açma bilgisi</li>
+                    <li class="no-collect">❌ Üçüncü taraflara satılan veya paylaşılan veriler</li>
+                </ul>
+                
+                <h2>3. Bilgileri Nasıl Kullanıyoruz</h2>
+                <p>Bilgiler yalnızca şunlar için kullanılır:</p>
+                <ul>
+                    <li>Zamanlayıcı ve hatırlatıcı özellikleri</li>
+                    <li>Kullanıcı deneyimini iyileştirme</li>
+                    <li>Hata düzeltmeleri ve kararlılık iyileştirmeleri</li>
+                    <li>Reklam desteği</li>
+                </ul>
+                
+                <h2>4. Veri Depolama ve Güvenlik</h2>
+                <ul>
+                    <li>Veriler cihazınızda yerel olarak saklanır.</li>
+                    <li>Firebase iletişimi şifreli HTTPS kullanır.</li>
+                    <li>Kişisel verileri depolamak için sunucu işletmiyoruz.</li>
+                </ul>
+                
+                <h2>5. Üçüncü Taraf Hizmetleri</h2>
+                <p>Uygulama aşağıdaki hizmetleri kullanır:</p>
+                <ul>
+                    <li>Google AdMob - Reklam hizmeti</li>
+                    <li>Google Firebase Analytics - Anonim kullanım analizi</li>
+                    <li>Google Firebase Crashlytics - Hata raporlama</li>
+                </ul>
+                
+                <h2>6. Çocukların Gizliliği</h2>
+                <p>Uygulama, 13 yaşın altındaki çocuklar için tasarlanmamıştır ve çocuklardan bilerek veri toplamaz.</p>
+                
+                <h2>7. Gizlilik Politikası Güncellemeleri</h2>
+                <p>Bu Gizlilik Politikasını zaman zaman güncelleyebiliriz ve değişiklikler derhal yürürlüğe girecektir.</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. İletişim Bilgileri</h2>
+                    <p>Herhangi bir sorunuz için:<br>
+                    📩 E-posta: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- ภาษาไทย -->
+            <div id="th" class="lang-content">
+                <div class="last-updated">อัปเดตล่าสุด: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> ("แอปพลิเคชัน") ได้รับการพัฒนาและให้บริการโดยนักพัฒนาบุคคลเดียว นโยบายความเป็นส่วนตัวนี้จะอธิบายวิธีการที่เราเก็บรวบรวม ใช้ และปกป้องข้อมูลของคุณ แอปพลิเคชันให้ความสำคัญกับความเป็นส่วนตัวของคุณเป็นอย่างยิ่งและลดการประมวลผลข้อมูลส่วนบุคคลให้น้อยที่สุด</p>
+                
+                <h2>1. ข้อมูลที่เราเก็บรวบรวม</h2>
+                
+                <h3>(1) ข้อมูลที่ผู้ใช้ป้อน</h3>
+                <p>แอปพลิเคชันอาจจัดเก็บข้อมูลที่คุณป้อนด้วยตนเอง เช่น:</p>
+                <ul>
+                    <li>ชื่อตัวจับเวลา (Timer names)</li>
+                    <li>การตั้งค่ากลุ่มตัวจับเวลา</li>
+                    <li>การตั้งค่าส่วนบุคคล (ภาษา, ธีม, การตั้งค่าการแจ้งเตือน)</li>
+                </ul>
+                <p><span class="highlight">ข้อมูลทั้งหมดจะถูกจัดเก็บไว้ในเครื่องของคุณเท่านั้น และจะไม่ถูกอัปโหลดไปยังเซิร์ฟเวอร์ใด ๆ</span></p>
+                
+                <h3>(2) ข้อมูลโฆษณาของบุคคลที่สาม (Google AdMob)</h3>
+                <p>เพื่อสนับสนุนการดำเนินการของแอปพลิเคชัน เราใช้ Google AdMob เพื่อแสดงโฆษณา AdMob อาจเก็บรวบรวมข้อมูลต่อไปนี้:</p>
+                <ul>
+                    <li>ข้อมูลอุปกรณ์ (เช่น รุ่น, เวอร์ชันของระบบปฏิบัติการ)</li>
+                    <li>ตัวระบุโฆษณา (IDFA / AAID)</li>
+                    <li>ข้อมูลการโต้ตอบกับโฆษณา</li>
+                </ul>
+                <p>ข้อมูลนี้ได้รับการประมวลผลโดย Google ตามนโยบายความเป็นส่วนตัวของพวกเขา:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) การวิเคราะห์การใช้งานที่ไม่ระบุตัวตน (Firebase Analytics)</h3>
+                <p>เพื่อช่วยปรับปรุงแอปพลิเคชัน อาจมีการเก็บรวบรวมข้อมูลที่ไม่ระบุตัวตนผ่าน Firebase Analytics ซึ่งรวมถึง:</p>
+                <ul>
+                    <li>ความถี่ในการใช้งานคุณลักษณะ</li>
+                    <li>ประเภทอุปกรณ์และเวอร์ชันของระบบปฏิบัติการ</li>
+                    <li>รายงานข้อผิดพลาด (crash logs)</li>
+                </ul>
+                <p>Firebase จะไม่เก็บรวบรวมข้อมูลที่สามารถระบุตัวตนส่วนบุคคลได้</p>
+                
+                <h2>2. ข้อมูลที่เราไม่ได้เก็บรวบรวม</h2>
+                <ul>
+                    <li class="no-collect">❌ ชื่อ, ที่อยู่, หมายเลขโทรศัพท์, อีเมล</li>
+                    <li class="no-collect">❌ ไฟล์ของผู้ใช้</li>
+                    <li class="no-collect">❌ ข้อมูล GPS หรือตำแหน่ง</li>
+                    <li class="no-collect">❌ ข้อมูลประจำตัวสำหรับการเข้าสู่ระบบใด ๆ</li>
+                    <li class="no-collect">❌ ข้อมูลที่ขายหรือแบ่งปันกับบุคคลที่สาม</li>
+                </ul>
+                
+                <h2>3. เราใช้ข้อมูลอย่างไร</h2>
+                <p>ข้อมูลจะถูกใช้เพื่อวัตถุประสงค์เดียวเท่านั้น ได้แก่:</p>
+                <ul>
+                    <li>คุณสมบัติของตัวจับเวลาและการแจ้งเตือน</li>
+                    <li>ปรับปรุงประสบการณ์ของผู้ใช้</li>
+                    <li>การแก้ไขข้อบกพร่องและการปรับปรุงเสถียรภาพ</li>
+                    <li>การสนับสนุนโฆษณา</li>
+                </ul>
+                
+                <h2>4. การจัดเก็บข้อมูลและความปลอดภัย</h2>
+                <ul>
+                    <li>ข้อมูลจะถูกจัดเก็บไว้ในเครื่องของคุณเท่านั้น</li>
+                    <li>การสื่อสารของ Firebase ใช้ HTTPS ที่เข้ารหัส</li>
+                    <li>เราไม่ได้ดำเนินการเซิร์ฟเวอร์เพื่อจัดเก็บข้อมูลส่วนบุคคล</li>
+                </ul>
+                
+                <h2>5. บริการของบุคคลที่สาม</h2>
+                <p>แอปพลิเคชันใช้บริการต่อไปนี้:</p>
+                <ul>
+                    <li>Google AdMob - บริการโฆษณา</li>
+                    <li>Google Firebase Analytics - การวิเคราะห์การใช้งานที่ไม่ระบุตัวตน</li>
+                    <li>Google Firebase Crashlytics - การรายงานข้อผิดพลาด</li>
+                </ul>
+                
+                <h2>6. ความเป็นส่วนตัวของเด็ก</h2>
+                <p>แอปพลิเคชันไม่ได้ออกแบบมาสำหรับเด็กอายุต่ำกว่า 13 ปี และเราจะไม่เก็บรวบรวมข้อมูลจากเด็กโดยเจตนา</p>
+                
+                <h2>7. การอัปเดตนโยบายความเป็นส่วนตัว</h2>
+                <p>เราอาจอัปเดตนโยบายความเป็นส่วนตัวนี้เป็นครั้งคราว และการเปลี่ยนแปลงจะมีผลทันที</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. ข้อมูลติดต่อ</h2>
+                    <p>สำหรับคำถามใด ๆ:<br>
+                    📩 อีเมล: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- हिन्दी -->
+            <div id="hi" class="lang-content">
+                <div class="last-updated">अंतिम अपडेट: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> ("एप्लिकेशन") एक व्यक्तिगत डेवलपर द्वारा प्रदान किया गया है। यह गोपनीयता नीति बताती है कि हम आपकी जानकारी को कैसे एकत्र, उपयोग और सुरक्षित करते हैं। एप्लिकेशन आपकी गोपनीयता का बहुत सम्मान करता है और व्यक्तिगत डेटा के प्रसंस्करण को न्यूनतम रखता है।</p>
+                
+                <h2>1. जानकारी जो हम एकत्र करते हैं</h2>
+                
+                <h3>(1) उपयोगकर्ता द्वारा दर्ज किया गया डेटा</h3>
+                <p>एप्लिकेशन वह जानकारी संग्रहीत कर सकता है जिसे आप मैन्युअल रूप से दर्ज करते हैं, जैसे:</p>
+                <ul>
+                    <li>टाइमर नाम</li>
+                    <li>टाइमर समूह विन्यास</li>
+                    <li>व्यक्तिगत प्राथमिकताएं (भाषा, थीम, अनुस्मारक सेटिंग्स)</li>
+                </ul>
+                <p><span class="highlight">सभी डेटा आपके डिवाइस पर स्थानीय रूप से संग्रहीत किया जाता है और किसी भी सर्वर पर कभी भी अपलोड नहीं किया जाता है।</span></p>
+                
+                <h3>(2) तृतीय-पक्ष विज्ञापन डेटा (Google AdMob)</h3>
+                <p>एप्लिकेशन के रखरखाव का समर्थन करने के लिए, हम विज्ञापन प्रदर्शित करने के लिए Google AdMob का उपयोग करते हैं। AdMob निम्नलिखित जानकारी एकत्र कर सकता है:</p>
+                <ul>
+                    <li>डिवाइस जानकारी (मॉडल, ओएस संस्करण)</li>
+                    <li>विज्ञापन पहचानकर्ता (IDFA / AAID)</li>
+                    <li>विज्ञापन इंटरैक्शन डेटा</li>
+                </ul>
+                <p>इस डेटा को Google अपनी गोपनीयता नीति के अनुसार संसाधित करता है:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) अनाम उपयोग विश्लेषण (Firebase Analytics)</h3>
+                <p>एप्लिकेशन को बेहतर बनाने में मदद के लिए, Firebase Analytics के माध्यम से अनाम डेटा एकत्र किया जा सकता है, जिसमें शामिल हैं:</p>
+                <ul>
+                    <li>फीचर उपयोग आवृत्ति</li>
+                    <li>डिवाइस प्रकार और ओएस संस्करण</li>
+                    <li>क्रैश रिपोर्ट (त्रुटि लॉग)</li>
+                </ul>
+                <p>Firebase व्यक्तिगत रूप से पहचान योग्य जानकारी एकत्र नहीं करता है।</p>
+                
+                <h2>2. जानकारी जो हम एकत्र नहीं करते हैं</h2>
+                <ul>
+                    <li class="no-collect">❌ नाम, पता, फ़ोन नंबर, ईमेल</li>
+                    <li class="no-collect">❌ उपयोगकर्ता फ़ाइलें</li>
+                    <li class="no-collect">❌ GPS या स्थान डेटा</li>
+                    <li class="no-collect">❌ कोई भी लॉगिन क्रेडेंशियल</li>
+                    <li class="no-collect">❌ तीसरे पक्ष को बेचा या साझा किया गया डेटा</li>
+                </ul>
+                
+                <h2>3. हम जानकारी का उपयोग कैसे करते हैं</h2>
+                <p>जानकारी का उपयोग केवल निम्नलिखित के लिए किया जाता है:</p>
+                <ul>
+                    <li>टाइमर और अनुस्मारक सुविधाएँ</li>
+                    <li>उपयोगकर्ता अनुभव में सुधार</li>
+                    <li>त्रुटि सुधार और स्थिरता में सुधार</li>
+                    <li>विज्ञापन समर्थन</li>
+                </ul>
+                
+                <h2>4. डेटा भंडारण और सुरक्षा</h2>
+                <ul>
+                    <li>डेटा आपके डिवाइस पर स्थानीय रूप से संग्रहीत किया जाता है।</li>
+                    <li>Firebase संचार एन्क्रिप्टेड HTTPS का उपयोग करता है।</li>
+                    <li>हम व्यक्तिगत डेटा संग्रहीत करने के लिए सर्वर संचालित नहीं करते हैं।</li>
+                </ul>
+                
+                <h2>5. तृतीय-पक्ष सेवाएँ</h2>
+                <p>एप्लिकेशन निम्नलिखित सेवाओं का उपयोग करता है:</p>
+                <ul>
+                    <li>Google AdMob - विज्ञापन सेवा</li>
+                    <li>Google Firebase Analytics - अनाम उपयोग विश्लेषण</li>
+                    <li>Google Firebase Crashlytics - त्रुटि रिपोर्टिंग</li>
+                </ul>
+                
+                <h2>6. बच्चों की गोपनीयता</h2>
+                <p>एप्लिकेशन 13 वर्ष से कम उम्र के बच्चों के लिए डिज़ाइन नहीं किया गया है और जानबूझकर बच्चों से डेटा एकत्र नहीं करता है।</p>
+                
+                <h2>7. गोपनीयता नीति अपडेट</h2>
+                <p>हम समय-समय पर इस गोपनीयता नीति को अपडेट कर सकते हैं, और परिवर्तन तुरंत प्रभावी होंगे।</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. संपर्क जानकारी</h2>
+                    <p>किसी भी प्रश्न के लिए:<br>
+                    📩 ईमेल: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- বাংলা -->
+            <div id="bn" class="lang-content">
+                <div class="last-updated">সর্বশেষ হালনাগাদ: 2025-12-14</div>
+                
+                <p><strong>TempoFlow</strong> ("অ্যাপ") একজন স্বতন্ত্র ডেভেলপার দ্বারা সরবরাহ করা হয়েছে। এই গোপনীয়তা নীতি ব্যাখ্যা করে যে আমরা কীভাবে আপনার তথ্য সংগ্রহ করি, ব্যবহার করি এবং সুরক্ষা দিই। অ্যাপটি আপনার গোপনীয়তাকে অত্যন্ত সম্মান করে এবং ব্যক্তিগত ডেটা প্রক্রিয়াকরণকে নূন্যতম রাখে।</p>
+                
+                <h2>1. আমরা যে তথ্য সংগ্রহ করি</h2>
+                
+                <h3>(1) ব্যবহারকারীর প্রবেশ করানো ডেটা</h3>
+                <p>অ্যাপটি আপনার ম্যানুয়ালি প্রবেশ করানো তথ্য সংরক্ষণ করতে পারে, যেমন:</p>
+                <ul>
+                    <li>টাইমারের নাম</li>
+                    <li>টাইমার গ্রুপ কনফিগারেশন</li>
+                    <li>ব্যক্তিগত পছন্দ (ভাষা, থিম, অনুস্মারক সেটিংস)</li>
+                </ul>
+                <p><span class="highlight">সমস্ত ডেটা আপনার ডিভাইসে স্থানীয়ভাবে সংরক্ষণ করা হয় এবং কখনই কোনো সার্ভারে আপলোড করা হয় না।</span></p>
+                
+                <h3>(2) তৃতীয় পক্ষের বিজ্ঞাপনের ডেটা (Google AdMob)</h3>
+                <p>অ্যাপ রক্ষণাবেক্ষণে সহায়তার জন্য, আমরা বিজ্ঞাপন প্রদর্শনের জন্য Google AdMob ব্যবহার করি। AdMob নিম্নলিখিত তথ্য সংগ্রহ করতে পারে:</p>
+                <ul>
+                    <li>ডিভাইসের তথ্য (মডেল, ওএস সংস্করণ)</li>
+                    <li>বিজ্ঞাপন সনাক্তকারী (IDFA / AAID)</li>
+                    <li>বিজ্ঞাপনের সাথে মিথস্ক্রিয়া ডেটা</li>
+                </ul>
+                <p>এই ডেটা Google তাদের গোপনীয়তা নীতি অনুসারে প্রক্রিয়া করে:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) বেনামী ব্যবহার বিশ্লেষণ (Firebase Analytics)</h3>
+                <p>অ্যাপটির উন্নতিতে সহায়তার জন্য, Firebase Analytics-এর মাধ্যমে বেনামী ডেটা সংগ্রহ করা হতে পারে, যার মধ্যে রয়েছে:</p>
+                <ul>
+                    <li>ফিচার ব্যবহারের ফ্রিকোয়েন্সি</li>
+                    <li>ডিভাইসের ধরন এবং ওএস সংস্করণ</li>
+                    <li>ক্র্যাশ রিপোর্ট (ত্রুটি লগ)</li>
+                </ul>
+                <p>Firebase ব্যক্তিগতভাবে শনাক্তযোগ্য তথ্য সংগ্রহ করে না।</p>
+                
+                <h2>2. আমরা যে তথ্য সংগ্রহ করি না</h2>
+                <ul>
+                    <li class="no-collect">❌ নাম, ঠিকানা, ফোন নম্বর, ইমেল</li>
+                    <li class="no-collect">❌ ব্যবহারকারীর ফাইল</li>
+                    <li class="no-collect">❌ GPS বা অবস্থানের ডেটা</li>
+                    <li class="no-collect">❌ কোনো লগইন শংসাপত্র</li>
+                    <li class="no-collect">❌ তৃতীয় পক্ষের কাছে বিক্রি বা শেয়ার করা ডেটা</li>
+                </ul>
+                
+                <h2>3. আমরা কীভাবে তথ্য ব্যবহার করি</h2>
+                <p>তথ্য শুধুমাত্র নিম্নলিখিতগুলির জন্য ব্যবহৃত হয়:</p>
+                <ul>
+                    <li>টাইমার এবং অনুস্মারক বৈশিষ্ট্য</li>
+                    <li>ব্যবহারকারীর অভিজ্ঞতা উন্নত করা</li>
+                    <li>বাগ ফিক্স এবং স্থিতিশীলতা উন্নত করা</li>
+                    <li>বিজ্ঞাপন সমর্থন</li>
+                </ul>
+                
+                <h2>4. ডেটা স্টোরেজ এবং নিরাপত্তা</h2>
+                <ul>
+                    <li>ডেটা আপনার ডিভাইসে স্থানীয়ভাবে সংরক্ষণ করা হয়।</li>
+                    <li>Firebase যোগাযোগ এনক্রিপ্টেড HTTPS ব্যবহার করে।</li>
+                    <li>আমরা ব্যক্তিগত ডেটা সংরক্ষণের জন্য সার্ভার পরিচালনা করি না।</li>
+                </ul>
+                
+                <h2>5. তৃতীয় পক্ষের পরিষেবা</h2>
+                <p>অ্যাপটি নিম্নলিখিত পরিষেবাগুলি ব্যবহার করে:</p>
+                <ul>
+                    <li>Google AdMob - বিজ্ঞাপন পরিষেবা</li>
+                    <li>Google Firebase Analytics - বেনামী ব্যবহার বিশ্লেষণ</li>
+                    <li>Google Firebase Crashlytics - ত্রুটি রিপোর্টিং</li>
+                </ul>
+                
+                <h2>6. শিশুদের গোপনীয়তা</h2>
+                <p>অ্যাপটি 13 বছরের কম বয়সী শিশুদের জন্য ডিজাইন করা হয়নি এবং শিশুদের কাছ থেকে জেনে-শুনে ডেটা সংগ্রহ করে না।</p>
+                
+                <h2>7. গোপনীয়তা নীতির হালনাগাদ</h2>
+                <p>আমরা সময়ে সময়ে এই গোপনীয়তা নীতি হালনাগাদ করতে পারি এবং পরিবর্তনগুলি অবিলম্বে কার্যকর হবে।</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. যোগাযোগের তথ্য</h2>
+                    <p>যেকোনো প্রশ্নের জন্য:<br>
+                    📩 ইমেল: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
+            
+            <!-- العربية -->
+            <div id="ar" class="lang-content rtl">
+                <div class="last-updated">آخر تحديث: 2025-12-14</div>
+                
+                <p>يتم توفير <strong>TempoFlow</strong> ("التطبيق") من قبل مطور فردي. توضح سياسة الخصوصية هذه كيفية جمع واستخدام وحماية معلوماتك. يولي التطبيق أهمية قصوى لخصوصيتك ويقلل من معالجة البيانات الشخصية إلى الحد الأدنى.</p>
+                
+                <h2>1. المعلومات التي نجمعها</h2>
+                
+                <h3>(1) البيانات التي يدخلها المستخدم</h3>
+                <p>قد يقوم التطبيق بتخزين المعلومات التي تدخلها يدويًا، مثل:</p>
+                <ul>
+                    <li>أسماء المؤقتات (Timers)</li>
+                    <li>تكوينات مجموعات المؤقتات</li>
+                    <li>التفضيلات الشخصية (اللغة، المظهر، إعدادات التذكير)</li>
+                </ul>
+                <p><span class="highlight">يتم تخزين جميع البيانات محليًا على جهازك ولا يتم تحميلها أبدًا إلى أي خادم.</span></p>
+                
+                <h3>(2) بيانات إعلانات الطرف الثالث (Google AdMob)</h3>
+                <p>لدعم صيانة التطبيق، نستخدم Google AdMob لعرض الإعلانات. قد يجمع AdMob المعلومات التالية:</p>
+                <ul>
+                    <li>معلومات الجهاز (مثل الطراز، إصدار نظام التشغيل)</li>
+                    <li>معرفات الإعلانات (IDFA / AAID)</li>
+                    <li>بيانات التفاعل مع الإعلانات</li>
+                </ul>
+                <p>تتم معالجة هذه البيانات بواسطة Google وفقًا لسياسة الخصوصية الخاصة بها:<br>
+                <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+                
+                <h3>(3) تحليلات الاستخدام المجهولة (Firebase Analytics)</h3>
+                <p>للمساعدة في تحسين التطبيق، قد يتم جمع بيانات مجهولة عبر Firebase Analytics، بما في ذلك:</p>
+                <ul>
+                    <li>تكرار استخدام الميزات</li>
+                    <li>نوع الجهاز وإصدار نظام التشغيل</li>
+                    <li>تقارير الأعطال (crash logs)</li>
+                </ul>
+                <p>لا يجمع Firebase معلومات يمكن تحديد الهوية الشخصية من خلالها.</p>
+                
+                <h2>2. المعلومات التي لا نجمعها</h2>
+                <ul>
+                    <li class="no-collect">❌ الاسم، العنوان، رقم الهاتف، البريد الإلكتروني</li>
+                    <li class="no-collect">❌ ملفات المستخدم</li>
+                    <li class="no-collect">❌ بيانات نظام تحديد المواقع (GPS) أو الموقع</li>
+                    <li class="no-collect">❌ أي بيانات اعتماد تسجيل دخول</li>
+                    <li class="no-collect">❌ البيانات المباعة أو المشتركة مع أطراف ثالثة</li>
+                </ul>
+                
+                <h2>3. كيف نستخدم المعلومات</h2>
+                <p>تُستخدم المعلومات فقط للأغراض التالية:</p>
+                <ul>
+                    <li>ميزات المؤقت والتذكير</li>
+                    <li>تحسين تجربة المستخدم</li>
+                    <li>إصلاح الأخطاء وتحسين الاستقرار</li>
+                    <li>دعم الإعلانات</li>
+                </ul>
+                
+                <h2>4. تخزين البيانات والأمان</h2>
+                <ul>
+                    <li>يتم تخزين البيانات محليًا على جهازك.</li>
+                    <li>يستخدم اتصال Firebase بروتوكول HTTPS المشفر.</li>
+                    <li>نحن لا ندير خوادم لتخزين البيانات الشخصية.</li>
+                </ul>
+                
+                <h2>5. خدمات الطرف الثالث</h2>
+                <p>يستخدم التطبيق الخدمات التالية:</p>
+                <ul>
+                    <li>Google AdMob - خدمة الإعلانات</li>
+                    <li>Google Firebase Analytics - تحليلات الاستخدام المجهولة</li>
+                    <li>Google Firebase Crashlytics - الإبلاغ عن الأخطاء</li>
+                </ul>
+                
+                <h2>6. خصوصية الأطفال</h2>
+                <p>التطبيق غير مصمم للأطفال دون سن 13 عامًا ولا يجمع البيانات من الأطفال عن قصد.</p>
+                
+                <h2>7. تحديثات سياسة الخصوصية</h2>
+                <p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر، وستدخل التغييرات حيز التنفيذ على الفور.</p>
+                
+                <div class="contact-box">
+                    <h2 style="color: white; border: none; margin-top: 0">8. معلومات الاتصال</h2>
+                    <p>لأية أسئلة:<br>
+                    📩 البريد الإلكتروني: <a href="mailto:idteasonchen@gmail.com">idteasonchen@gmail.com</a></p>
+                </div>
+            </div>
         </div>
     </div>
     
     <script>
         // 函式：用於切換顯示的語言內容
         function switchLang(lang) {
-            // 取得所有語言按鈕
             const buttons = document.querySelectorAll('.lang-btn');
-            // 取得所有語言內容區塊
             const contents = document.querySelectorAll('.lang-content');
-
-            // 移除所有按鈕的 active 樣式
-            buttons.forEach(btn => btn.classList.remove('active'));
-            // 隱藏所有語言內容
-            contents.forEach(content => content.classList.remove('active'));
-
-            // 找到被點擊按鈕（透過 data-lang 屬性或 onclick 傳入的 lang 參數），並將它設定為 active
-            // 為了確保範例簡潔，我們假設按鈕的 onclick 已經正確傳入 lang 參數
-            document.querySelector(`.lang-btn[onclick*="'${lang}'"]`).classList.add('active');
-
-            // 顯示對應 ID 的語言內容區塊
-            document.getElementById(lang).classList.add('active');
             
-            // 選擇性：更新頁面的 lang 屬性（用於 SEO 和輔助功能）
-            document.documentElement.setAttribute('lang', lang);
+            buttons.forEach(btn => btn.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // 尋找對應 lang 參數的按鈕並設定為 active
+            document.querySelector(`.lang-btn[onclick*="'${lang}'"]`).classList.add('active');
+            
+            // 顯示對應 ID 的語言內容區塊
+            const targetContent = document.getElementById(lang);
+            if (targetContent) {
+                targetContent.classList.add('active');
+                document.documentElement.setAttribute('lang', lang);
+            }
         }
-
+        
         // 頁面載入時確保初始狀態正確
         document.addEventListener('DOMContentLoaded', () => {
-            // 找到所有語言切換按鈕
-            const langButtons = document.querySelectorAll('.lang-btn');
-            
-            // 檢查是否有語言參數在 URL 中，以便在頁面載入時預設切換
+            // *** 關鍵修改：將預設初始語言從 'zh-TW' 更改為 'en' ***
             const urlParams = new URLSearchParams(window.location.search);
-            const initialLang = urlParams.get('lang') || 'zh-TW'; // 預設為繁體中文
+            const initialLang = urlParams.get('lang') || 'en'; // 預設為 English
             
             // 執行初始切換
             switchLang(initialLang);
             
-            // 綁定點擊事件（由於您在 HTML 中已經使用 onclick，這裡可以省略，但為了穩健性，建議加入）
+            // 綁定點擊事件並處理 URL 更新
+            const langButtons = document.querySelectorAll('.lang-btn');
             langButtons.forEach(button => {
-                const langCode = button.getAttribute('onclick').match(/'(.*?)'/)[1]; // 從 onclick 屬性中提取語言代碼
-                button.addEventListener('click', () => {
-                    switchLang(langCode);
-                    
-                    // 選擇性：更新 URL，但不重新載入頁面 (HTML5 History API)
-                    const newUrl = `${window.location.origin}${window.location.pathname}?lang=${langCode}`;
-                    window.history.pushState({ path: newUrl }, '', newUrl);
-                });
+                const onclickAttr = button.getAttribute('onclick');
+                const langCodeMatch = onclickAttr ? onclickAttr.match(/'(.*?)'/) : null;
+                
+                if (langCodeMatch && langCodeMatch[1]) {
+                    const langCode = langCodeMatch[1];
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault(); // 防止按鈕預設行為
+                        switchLang(langCode);
+                        
+                        // 選擇性：更新 URL，但不重新載入頁面 (HTML5 History API)
+                        const newUrl = `${window.location.origin}${window.location.pathname}?lang=${langCode}`;
+                        window.history.pushState({ path: newUrl }, '', newUrl);
+                    });
+                }
             });
         });
 
